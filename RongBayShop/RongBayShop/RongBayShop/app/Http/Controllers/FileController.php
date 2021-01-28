@@ -12,8 +12,6 @@ class FileController extends Controller
 {
    public function saveFile(REQUEST $request)
    {
-        $file = new FileModel();
-        return $file::create($request->all());
 
    }
    public function getFile(REQUEST $request)

@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class CategoryFilterModel extends Model
 {
     use Notifiable,
     SoftDeletes;
-    protected $table = 'product';
+    protected $table = 'category_filter';
     protected $hidden = ['deleted_at'];
     protected $casts = [
         'created_at' => 'date:Y-m-d H:i:s',
@@ -17,11 +18,8 @@ class CategoryFilterModel extends Model
         'deleted_at' => 'date:Y-m-d H:i:s',
     ];
     protected $primaryKey = 'id';
-    protected $fillable = [ 'name','fileId','description','price','code','category_product_id'];
-    public function file(){
-        return $this->hasOne('App\Models\FileModel','id','fileId');
+    protected $fillable = [ 'name','description'];
+    public function filter(){
+        return $this->hasMany('App\Models\FilterModel','category_filter_id','id');
     }
-    public function category_product(){
-        return $this->hasOne('App\Models\CategoryProduct','id','category_product_id');
-}
 }

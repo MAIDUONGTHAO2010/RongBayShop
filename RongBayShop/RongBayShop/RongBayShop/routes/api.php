@@ -3,10 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryProductController;
-use App\Http\Controllers\FileController;
+use App\Http\Controllers\CategoryFilterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountController;
-
+use App\Http\Controllers\FilterController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,5 +35,8 @@ Route::post('/login', [AccountController::class, 'login']);
 Route::get('/getUser', [AccountController::class, 'getUser']);
 
 
-Route::post('/file', [FileController::class, 'setFile']);
-Route::get('/file', [FileController::class, 'getFile']);
+
+Route::post('/category_filter', [CategoryFilterController::class, 'create']);
+Route::get('/category_filter', [CategoryFilterController::class, 'getAll']);
+
+Route::post('/filter', [FilterController::class, 'create']);
