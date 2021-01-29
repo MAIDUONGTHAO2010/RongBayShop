@@ -36,6 +36,7 @@ class CategoryProductController extends Controller
             $category_cd = CategoryProduct::find($request->id);
             if(isset($category_cd)){
                 $category_cd->delete();
+                return response()->json();;
             }
         }
     }
@@ -44,10 +45,11 @@ class CategoryProductController extends Controller
         if(isset($request->id)){
             $category_cd = CategoryProduct::with('product')->find($request->id);
             if(isset($category_cd)){
-              foreach ($category_cd['product'] as $key) {
+                if(count($category_cd['product'])>0)
+             { foreach ($category_cd['product'] as $key) {
                 $key['file'] = url('images/' .$key['file']) ;
-              }
-              return   $category_cd;
+              }}
+              return  response()->json($category_cd);;
             }
            
         }

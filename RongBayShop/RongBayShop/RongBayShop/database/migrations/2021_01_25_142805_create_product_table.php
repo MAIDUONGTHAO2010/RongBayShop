@@ -19,8 +19,8 @@ class CreateProductTable extends Migration
             $table->string('file',500); //会社名
             $table->integer('category_product_id'); //会社名
             $table->string('description',500)->nullable(); //郵便番号
-            $table->string('price',10)->nullable(); //会社名
-            $table->string('code',10)->nullable(); //会社名
+            $table->string('price',100)->nullable(); //会社名
+            $table->string('code',100)->nullable(); //会社名
             $table->softDeletes();
             $table->timestamps();
             $table->foreign("category_product_id")->references("id")->on("category_product");

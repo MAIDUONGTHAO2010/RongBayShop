@@ -18,8 +18,11 @@ class ProductController extends Controller
          return response()->json($product);
     }
     public function getAll(Request $request){
-     
-        
+       $list = ProductModel::all();
+        foreach ($list as $product) {
+            $product['file'] =  url('images/' .$product['file']) ;
+        }
+        return $list;
     }
     public function update(Request $request)
     {
@@ -32,23 +35,25 @@ class ProductController extends Controller
             $product['description'] = $request->description;
             $product['price'] = $request->price;
             $product['code'] = $request->code;
-            $product['code'] = $request->code;
             $product['id'] = $request->id;
             $product->update();
             return response()->json($product);
         }
     }
-    public function get(Request $request){
+    public function getById(Request $request){
         if(isset($request->id)){
             $product = ProductModel::find($request->id);
+            $product['file'] = url('images/' .$product['file']) ;
             return response()->json($product);
         }
     }
     public function delete(Request $request){
         if(isset($request->id)){
-            $product = ProductModel::delete($request->id);
-            return 'success';
+            $product = ProductModel::find($request->id);
+            $product->delete();
+            return response()->json();;
         }
     }
+   
 
 }

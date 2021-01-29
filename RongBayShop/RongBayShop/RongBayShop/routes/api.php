@@ -22,13 +22,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/category_product', [CategoryProductController::class, 'create']);
+Route::delete('/category_product/{id}', [CategoryProductController::class, 'delete']);
 Route::get('/category_product', [CategoryProductController::class, 'getAll']);
 Route::get('/category_product/{id}', [CategoryProductController::class, 'getById']);
-Route::put('/category_product', [CategoryProductController::class, 'update']);
+Route::put('/category_product/{id}', [CategoryProductController::class, 'update']);
 
 Route::post('/product', [ProductController::class, 'create']);
 Route::get('/product', [ProductController::class, 'getAll']);
 Route::post('/productUpdate', [ProductController::class, 'update']);
+Route::delete('/product/{id}', [ProductController::class, 'delete']);
+Route::get('/product/{id}', [ProductController::class, 'getById']);
 
 Route::post('/register', [AccountController::class, 'register']);
 Route::post('/login', [AccountController::class, 'login']);
@@ -38,5 +41,8 @@ Route::get('/getUser', [AccountController::class, 'getUser']);
 
 Route::post('/category_filter', [CategoryFilterController::class, 'create']);
 Route::get('/category_filter', [CategoryFilterController::class, 'getAll']);
+Route::get('/category_filter/{id}', [CategoryFilterController::class, 'getById']);
+Route::put('/category_filter/{id}', [CategoryFilterController::class, 'update']);
+Route::delete('/category_filter/{id}', [CategoryFilterController::class, 'delete']);
 
 Route::post('/filter', [FilterController::class, 'create']);
