@@ -46,3 +46,7 @@ Route::put('/category_filter/{id}', [CategoryFilterController::class, 'update'])
 Route::delete('/category_filter/{id}', [CategoryFilterController::class, 'delete']);
 
 Route::post('/filter', [FilterController::class, 'create']);
+Route::get('/filter', [FilterController::class, 'getAll']);
+Route::get('/filter/{id}', [FilterController::class, 'getById']);
+Route::put('/filter/{id}', [FilterController::class, 'update']);
+Route::delete('/filter/{id}', [FilterController::class, 'delete']);
