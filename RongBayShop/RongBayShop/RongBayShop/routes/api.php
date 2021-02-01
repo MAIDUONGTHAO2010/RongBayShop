@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryFilterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\FilterProductController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -50,3 +51,7 @@ Route::get('/filter', [FilterController::class, 'getAll']);
 Route::get('/filter/{id}', [FilterController::class, 'getById']);
 Route::put('/filter/{id}', [FilterController::class, 'update']);
 Route::delete('/filter/{id}', [FilterController::class, 'delete']);
+
+Route::post('/filter-product', [FilterProductController::class, 'create']);
+Route::get('/filter-product', [FilterProductController::class, 'getListCategoryFilterByCategoryProduct']);
+Route::put('/filter-product', [FilterProductController::class, 'update']);

@@ -28,8 +28,11 @@ class ProductController extends Controller
     {
         if(isset($request->id)){
             $product = ProductModel::find($request->id);
-            FileController::deleteFile($request,$product['file']);
-            $product['file'] =   FileController::setFile($request);
+            $img  = $request->file('image');
+            if(isset( $img)){
+                FileController::deleteFile($request,$product['file']);
+                $product['file'] =   FileController::setFile($request);
+            }
             $product['name'] = $request->name;
             $product['category_product_id'] = $request->category_product_id;
             $product['description'] = $request->description;
@@ -54,6 +57,6 @@ class ProductController extends Controller
             return response()->json();;
         }
     }
-   
+
 
 }
