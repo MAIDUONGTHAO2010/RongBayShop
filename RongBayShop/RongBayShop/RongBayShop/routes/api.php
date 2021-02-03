@@ -53,5 +53,6 @@ Route::put('/filter/{id}', [FilterController::class, 'update']);
 Route::delete('/filter/{id}', [FilterController::class, 'delete']);
 
 Route::post('/filter-product', [FilterProductController::class, 'create']);
-Route::get('/filter-product', [FilterProductController::class, 'getListCategoryFilterByCategoryProduct']);
+Route::get('/filter-product', [FilterProductController::class, 'getAll']);
 Route::put('/filter-product', [FilterProductController::class, 'update']);
+Route::get('/filter-product/{id}', [FilterProductController::class, 'getListCategoryFilterByCategoryProduct']);

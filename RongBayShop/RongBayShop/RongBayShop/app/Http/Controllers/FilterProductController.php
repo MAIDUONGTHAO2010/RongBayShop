@@ -41,4 +41,10 @@ class FilterProductController extends Controller
             return $this->create($request);
 
     }
+    public function getAll(Request $request)
+    {
+        $list = FilterProductModel::get()
+                                    ->groupBy('category_product_id');
+      return $list;
+    }
 }

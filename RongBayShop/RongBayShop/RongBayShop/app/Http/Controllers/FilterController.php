@@ -36,4 +36,11 @@ class FilterController extends Controller
             return response()->json($filter);
         }
     }
+    public function delete(Request $request )
+    {
+        # code...
+        if(isset($request->id)){
+            $filter = FilterModel::find($request->id)->delete();
+        }
+    }
 }
