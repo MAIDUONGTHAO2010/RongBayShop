@@ -15,7 +15,7 @@ class FilterProductController extends Controller
         foreach ($listFilterType as $key) {
          $item = new FilterProductModel();
          $item->category_product_id =  $request->category_product_id;
-         $item->category_filter_id =  $key['id'];
+         $item->category_filter_id =  $key;
          $item->save();
         }
     }
@@ -43,8 +43,28 @@ class FilterProductController extends Controller
     }
     public function getAll(Request $request)
     {
-        $list = FilterProductModel::get()
-                                    ->groupBy('category_product_id');
-      return $list;
+        $list =FilterProductModel::get()->groupBy('category_product_id');
+
+        if(count($list)>0){
+            $listResult = [];
+            foreach($list as $key => $value) {
+                $list_category_filter_id = [];
+                $category_product_id = null;
+                foreach ($value as $item ) {
+                    array_push( $list_category_filter_id,$item['category_filter_id']);
+                    $category_product_id = $item['category_product_id'];
+                }
+
+                $val =  (array)[
+                    'category_product_id' => $category_product_id,
+                    'list' =>$list_category_filter_id
+                ];
+                array_push( $listResult,$val);
+
+            }
+             return $listResult;
+        }
+
+        return $list;
     }
 }
