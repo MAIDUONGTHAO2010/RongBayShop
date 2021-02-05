@@ -17,7 +17,7 @@ class FilterController extends Controller
     public function getAll(Request $request )
     {
         # code...
-        $filter =  FilterModel::all();
+        $filter =  FilterModel::with('category_filter')->get();
         return response()->json($filter);
     }
     public function update(Request $request )

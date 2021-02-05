@@ -18,7 +18,7 @@ class ProductController extends Controller
          return response()->json($product);
     }
     public function getAll(Request $request){
-       $list = ProductModel::all();
+       $list = ProductModel::with('category_product')->get();
         foreach ($list as $product) {
             $product['file'] =  url('images/' .$product['file']) ;
         }
