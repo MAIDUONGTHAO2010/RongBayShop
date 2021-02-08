@@ -18,7 +18,7 @@ class ProductModel extends Model
         'deleted_at' => 'date:Y-m-d H:i:s',
     ];
     protected $primaryKey = 'id';
-    protected $fillable = [ 'name','file','description','price','code','category_product_id'];
+    protected $fillable = [ 'name','file','brand','description','price','code','category_product_id'];
     public function category_product(){
         return $this->hasOne('App\Models\CategoryProduct','id','category_product_id');
     }
