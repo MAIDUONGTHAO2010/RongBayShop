@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FilterProductModel;
 use App\Models\CategoryProduct;;
+use App\Models\CategoryFilterModel;
 class FilterProductController extends Controller
 {
     public function create(Request $request)
@@ -23,13 +24,14 @@ class FilterProductController extends Controller
     }
     public function getListCategoryFilterByCategoryProduct(Request $request)
     {
-        $list = FilterProductModel::where('category_product_id',$request->category_product_id)
+        $list = FilterProductModel::where('category_product_id',$request->id)
                                  ->get();
         $listId = [];
         foreach ($list as $key) {
-            array_push($listId,$key['id']);
+            array_push($listId,$key['category_filter_id']);
         }
-        $listResult = CategoryProduct::whereIn('id',$listId)
+        $listResult = CategoryFilterModel::with('filter')->whereIn('id',$listId)
+
                         ->get();
         return response()->json($listResult);
     }
